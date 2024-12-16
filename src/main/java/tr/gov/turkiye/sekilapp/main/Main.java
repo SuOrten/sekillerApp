@@ -3,19 +3,13 @@ package tr.gov.turkiye.sekilapp.main;
 import tr.gov.turkiye.sekilapp.jasonreaderandwriter.JasonReader;
 import tr.gov.turkiye.sekilapp.jasonreaderandwriter.JasonWriter;
 import tr.gov.turkiye.sekilapp.log.Logger;
+import tr.gov.turkiye.sekilapp.manager.PropertiesReader;
 import tr.gov.turkiye.sekilapp.sekil.*;
-import tr.gov.turkiye.sekilapp.manager.*;
-import java.util.Properties;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.io.BufferedWriter;
-import java.io.BufferedReader;
-import java.io.FileWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 
 import static tr.gov.turkiye.sekilapp.NewScanner.Newscanner.Option;
 
@@ -151,7 +145,7 @@ public class Main {
 
                 if (format.equals("json")){
                     Logger.logMessage("Veri Json formatında okunacak :\n");
-                    JasonReader.Reader(filepath);
+                    JasonReader.Reader(filepath,sekiller);
                 } else if (format.equals("plain")) {
                     listedenOkuyupDosyayaYaz(sekiller);
                 } else {
@@ -195,7 +189,7 @@ public class Main {
         }
     }
 
-    private static void dosyadanOkuyupListeyeObjeKoyma(List<Sekil> sekiller) {
+    private static void dosyadanOkuyupListeyeObjeKoyma(ArrayList<Sekil> sekiller) {
         try (BufferedReader br = new BufferedReader(new FileReader("output.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {

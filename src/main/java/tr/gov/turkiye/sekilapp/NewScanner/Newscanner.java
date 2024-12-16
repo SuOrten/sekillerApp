@@ -1,7 +1,6 @@
 package tr.gov.turkiye.sekilapp.NewScanner;
 
 import tr.gov.turkiye.sekilapp.log.Logger;
-import java.util.Scanner;
 
 import java.util.Scanner;
 

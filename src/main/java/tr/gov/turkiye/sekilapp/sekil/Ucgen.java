@@ -1,7 +1,6 @@
 package tr.gov.turkiye.sekilapp.sekil;
-import tr.gov.turkiye.sekilapp.log.Logger;
 
-import java.lang.Math;
+import tr.gov.turkiye.sekilapp.log.Logger;
 
 public class Ucgen extends Sekil {
 

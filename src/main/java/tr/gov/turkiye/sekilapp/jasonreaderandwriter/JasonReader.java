@@ -4,19 +4,18 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.exc.InvalidTypeIdException;
 import tr.gov.turkiye.sekilapp.log.Logger;
-import tr.gov.turkiye.sekilapp.sekil.*;
+import tr.gov.turkiye.sekilapp.sekil.Sekil;
+
 import java.io.File;
 import java.io.IOException;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 import java.util.List;
 
 
 public class JasonReader {
-    public static void Reader(String filepath){
+    public static void Reader(String filepath, ArrayList<Sekil> sekils){
 
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -25,10 +24,11 @@ public class JasonReader {
 
         try {
 
-            List<Sekil> sekils = objectMapper.readValue(sekilJsonfile, new TypeReference<List<Sekil>>() {
+            List<Sekil> sekils2 = objectMapper.readValue(sekilJsonfile, new TypeReference<List<Sekil>>() {
             });
-            for (Sekil sekil1 : sekils) {
+            for (Sekil sekil1 : sekils2) {
                 Logger.logMessage("Sekil Tipi " + sekil1.getClass().getSimpleName() + " Kenar: " + sekil1.getKenar() + ", Sembol: " + sekil1.getSembol() + "\n");
+                sekils.add(sekil1);
             }
 
             Logger.logMessage("Json dosyasından objeler okundu");
