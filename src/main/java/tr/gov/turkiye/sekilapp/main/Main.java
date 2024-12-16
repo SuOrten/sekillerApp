@@ -123,7 +123,7 @@ public class Main {
                     Logger.logMessage("Veri Json formatında yazılacak :\n");
                     JasonWriter.Writer(filepath,sekiller);
                 } else if (format.equals("plain")) {
-                    dosyadanOkuyupListeyeObjeKoyma(sekiller);
+                    listedenOkuyupDosyayaYaz(sekiller);
                 } else {
                     Logger.logMessage("Bu bilinmeyen bir formattır.\n");
                 }
@@ -147,7 +147,7 @@ public class Main {
                     Logger.logMessage("Veri Json formatında okunacak :\n");
                     JasonReader.Reader(filepath,sekiller);
                 } else if (format.equals("plain")) {
-                    listedenOkuyupDosyayaYaz(sekiller);
+                    dosyadanOkuyupListeyeObjeKoyma(sekiller);
                 } else {
                     Logger.logMessage("Bu bilinmeyen bir formattır.\n");
                 }
