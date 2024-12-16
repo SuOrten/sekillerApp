@@ -9,22 +9,25 @@ public class Newscanner {
     protected int x;
     protected int kenar;
     protected char sembol;
+    private static final String SEMBOLLER = "[1234567890!^+@#*$%]";
 
     public int getx() {
         return this.x;
     }
+
     public int getKenar() {
         return this.kenar;
     }
+
     public char getSembol() {
         return this.sembol;
     }
 
-    public void setx(){
+    public void setx() {
         Logger.logMessage("Bu bir konsol uygulamasidir. Lutfen asagidaki komut numaralarindan birini giriniz.\n");
         Logger.logMessage("Program calistigini kontrol etmek icin : 1\n");
-        Logger.logMessage ("Ekrana 3x3 kare cizdirmek icin : 2\n");
-        Logger.logMessage ("Ekrana parametreli kare cizdirmek icin : 3\n");
+        Logger.logMessage("Ekrana 3x3 kare cizdirmek icin : 2\n");
+        Logger.logMessage("Ekrana parametreli kare cizdirmek icin : 3\n");
         Logger.logMessage("Ucgen cizdirmek icin : 4\n");
         Logger.logMessage("dikdortgen cizdirmek icin : 5\n");
         Logger.logMessage("yildiz cizdirmek icin : 6\n");
@@ -37,21 +40,28 @@ public class Newscanner {
         Logger.logMessage("Listeyi görmek için : 13\n");
         Logger.logMessage("Listeyi sıfırlamak için : 14\n");
 
-        Scanner input = new Scanner(System.in );
+        Scanner input = new Scanner(System.in);
         this.x = input.nextInt();
+        if (x < 0 || x > 15){
+            throw new IllegalArgumentException(" Sadece 1 ve 14 arasındaki sayılar girilebilir.");
+        }
     }
 
-    public void setKenar(){
-        Scanner input = new Scanner(System.in );
+    public void setKenar() {
+        Scanner input = new Scanner(System.in);
         Logger.logMessage("Kenar uzunlugu gir\n");
         this.kenar = input.nextInt();
     }
 
-    public char setSembol(){
-        Scanner input = new Scanner(System.in );
+    public void setSembol() {
+        Scanner input = new Scanner(System.in);
         Logger.logMessage("sembol gir\n");
-        this.sembol = input.next().charAt(0);
-        return 0;
-    }
+        char temp = input.next().charAt(0);
+        if (SEMBOLLER.indexOf(temp) != -1) {
+            this.sembol = temp;
+        } else {
+            throw new IllegalArgumentException("Yanlış sembol seçimi.[1234567890!^+@#*$%] den biri olmalı");
+        }
 
+    }
 }

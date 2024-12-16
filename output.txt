@@ -1,2 +1,3 @@
 Dikdortgen,5,5,30.0,50.0
+Dikdortgen,5,5,30.0,50.0
 Ucgen,4,4,12.0,6.0
