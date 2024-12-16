@@ -123,7 +123,7 @@ public class Main {
                     Logger.logMessage("Veri Json formatında yazılacak :\n");
                     JasonWriter.Writer(filepath,sekiller);
                 } else if (format.equals("plain")) {
-                    listedenOkuyupDosyayaYaz(sekiller);
+                    listedenOkuyupDosyayaYaz(filepath,sekiller);
                 } else {
                     Logger.logMessage("Bu bilinmeyen bir formattır.\n");
                 }
@@ -147,7 +147,7 @@ public class Main {
                     Logger.logMessage("Veri Json formatında okunacak :\n");
                     JasonReader.Reader(filepath,sekiller);
                 } else if (format.equals("plain")) {
-                    dosyadanOkuyupListeyeObjeKoyma(sekiller);
+                    dosyadanOkuyupListeyeObjeKoyma(filepath,sekiller);
                 } else {
                     Logger.logMessage("Bu bilinmeyen bir formattır.\n");
                 }
@@ -172,9 +172,9 @@ public class Main {
         }while (true);
     }
 
-    private static void listedenOkuyupDosyayaYaz(List<Sekil> sekiller) {
+    private static void listedenOkuyupDosyayaYaz(String filepath ,List<Sekil> sekiller) {
         try {
-            File file = new File("output.txt");
+            File file = new File(filepath);
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
                 for (Sekil sekil : sekiller) {
                     sekil.cevre();
@@ -189,8 +189,8 @@ public class Main {
         }
     }
 
-    private static void dosyadanOkuyupListeyeObjeKoyma(ArrayList<Sekil> sekiller) {
-        try (BufferedReader br = new BufferedReader(new FileReader("output.txt"))) {
+    private static void dosyadanOkuyupListeyeObjeKoyma(String filepath, ArrayList<Sekil> sekiller) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",\\s*");
