@@ -4,11 +4,14 @@ import tr.gov.turkiye.sekilapp.jasonreaderandwriter.JasonReader;
 import tr.gov.turkiye.sekilapp.jasonreaderandwriter.JasonWriter;
 import tr.gov.turkiye.sekilapp.log.Logger;
 import tr.gov.turkiye.sekilapp.manager.PropertiesReader;
+import tr.gov.turkiye.sekilapp.plainreaderandwriter.PlainReader;
+import tr.gov.turkiye.sekilapp.plainreaderandwriter.PlainWriter;
 import tr.gov.turkiye.sekilapp.sekil.*;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import static tr.gov.turkiye.sekilapp.NewScanner.Newscanner.Option;
@@ -123,7 +126,8 @@ public class Main {
                     Logger.logMessage("Veri Json formatında yazılacak :\n");
                     JasonWriter.Writer(filepath,sekiller);
                 } else if (format.equals("plain")) {
-                    listedenOkuyupDosyayaYaz(filepath,sekiller);
+                    PlainWriter plainwriter = new PlainWriter();
+                    plainwriter.listedenOkuyupDosyayaYaz(filepath,sekiller);
                 } else {
                     Logger.logMessage("Bu bilinmeyen bir formattır.\n");
                 }
@@ -147,7 +151,8 @@ public class Main {
                     Logger.logMessage("Veri Json formatında okunacak :\n");
                     JasonReader.Reader(filepath,sekiller);
                 } else if (format.equals("plain")) {
-                    dosyadanOkuyupListeyeObjeKoyma(filepath,sekiller);
+                    PlainReader plainReader = new PlainReader();
+                    plainReader.dosyadanOkuyupListeyeObjeKoyma(filepath,sekiller);
                 } else {
                     Logger.logMessage("Bu bilinmeyen bir formattır.\n");
                 }
@@ -172,65 +177,7 @@ public class Main {
         }while (true);
     }
 
-    private static void listedenOkuyupDosyayaYaz(String filepath ,List<Sekil> sekiller) {
-        try {
-            File file = new File(filepath);
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
-                for (Sekil sekil : sekiller) {
-                    sekil.cevre();
-                    sekil.alan();
-                    bw.write(sekil.getClass().getSimpleName() + "," + sekil.getKenar() + "," + sekil.getSembol() + "," + sekil.getCevre() + "," + sekil.getAlan());
-                    bw.newLine();
-                }
-            }
-            Logger.logMessage("Şekiller dosyaya başarıyla yazıldı.\n");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    private static void dosyadanOkuyupListeyeObjeKoyma(String filepath, ArrayList<Sekil> sekiller) {
-        try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(",\\s*");
-                String sekilTur = parts[0];
-                int kenar = Integer.parseInt(parts[1]);
-                char sembol = parts[2].charAt(0);
-
-                Sekil sekil = null;
-                switch (sekilTur) {
-                    case "Kare":
-                        sekil = new Kare(kenar, sembol);
-                        break;
-                    case "Ucgen":
-                        sekil = new Ucgen(kenar, sembol);
-                        break;
-                    case "Dikdortgen":
-                        sekil = new Dikdortgen(kenar, sembol);
-                        break;
-                    case "Yildiz":
-                        sekil = new Yildiz(kenar, sembol);
-                        break;
-                    case "Daire":
-                        sekil = new Daire(kenar, sembol);
-                        break;
-                    default:
-                        Logger.logMessage("Bilinmeyen şekil türü: " + sekilTur);
-                        continue;
-                }
-
-                if (sekil != null) {
-                    sekiller.add(sekil);
-                }
-            }
-
-            Logger.logMessage("Şekiller başarıyla dosyadan okundu ve listeye eklendi. \n");
-
-        } catch (IOException e) {
-            Logger.logMessage("Dosya okuma sırasında bir hata oluştu:\n " + e.getMessage());
-        }
-    }
 
     private static void alanVeCevreHesaplamaVeBastirma(Sekil sekil) {
         Logger.logMessage("Alan değeri\n");
