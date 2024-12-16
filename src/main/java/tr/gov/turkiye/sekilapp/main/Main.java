@@ -21,6 +21,10 @@ public class Main {
 
         do {
 
+            try {
+
+
+
             Newscanner newscanner = new Newscanner();
             newscanner.setx();
             int x = newscanner.getx();
@@ -173,6 +177,13 @@ public class Main {
                 }
                 sekiller.clear();
             }
+
+            }catch (IllegalArgumentException e){
+                Logger.logMessage("Lütfen pozitif tamsayı giriniz. (1-14) \n");
+                e.getStackTrace();
+
+            }
+
         }while (true);
     }
 

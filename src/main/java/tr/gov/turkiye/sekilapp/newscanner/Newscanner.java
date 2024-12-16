@@ -42,10 +42,6 @@ public class Newscanner {
         Logger.logMessage("Listeyi görmek için : 13\n");
         Logger.logMessage("Listeyi sıfırlamak için : 14\n");
 
-        try {
-
-
-
         String kararregex = "([1-9]|1[0-4])";
 
         Scanner input = new Scanner(System.in);
@@ -55,13 +51,11 @@ public class Newscanner {
             this.x =temp;
 
         } else {
-            throw new IllegalArgumentException(" Sadece 1 ve 14 arasındaki sayılar girilebilir.");
+            Logger.logMessage("Sadece 1 ve 14 arasındaki sayılar girilebilir.\n");
+            throw new IllegalArgumentException();
         }
 
-        }catch (InputMismatchException e){
-            Logger.logMessage("Lütfen tamsayı giriniz.\n");
-            e.getStackTrace();
-        }
+
     }
 
     public void setKenar() {
@@ -79,10 +73,9 @@ public class Newscanner {
         if (String.valueOf(temp).matches(sembolregex)) {
             this.sembol = temp;
         } else {
-            throw new IllegalArgumentException("Yanlış sembol seçimi.");
+            Logger.logMessage("Yanlış sembol seçimi.\n");
+            throw new IllegalArgumentException();
         }
-
-
 
     }
 }
