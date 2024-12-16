@@ -8,13 +8,10 @@ import tr.gov.turkiye.sekilapp.plainreaderandwriter.PlainReader;
 import tr.gov.turkiye.sekilapp.plainreaderandwriter.PlainWriter;
 import tr.gov.turkiye.sekilapp.sekil.*;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static tr.gov.turkiye.sekilapp.NewScanner.Newscanner.Option;
+import static tr.gov.turkiye.sekilapp.newscanner.Newscanner.Option;
 
 public class Main {
     public static void main(String[] args) {

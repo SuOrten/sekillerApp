@@ -1,4 +1,4 @@
-package tr.gov.turkiye.sekilapp.NewScanner;
+package tr.gov.turkiye.sekilapp.newscanner;
 
 import tr.gov.turkiye.sekilapp.log.Logger;
 
