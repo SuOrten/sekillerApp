@@ -4,6 +4,7 @@ import tr.gov.turkiye.sekilapp.jasonreaderandwriter.JasonReader;
 import tr.gov.turkiye.sekilapp.jasonreaderandwriter.JasonWriter;
 import tr.gov.turkiye.sekilapp.log.Logger;
 import tr.gov.turkiye.sekilapp.manager.PropertiesReader;
+import tr.gov.turkiye.sekilapp.newscanner.Newscanner;
 import tr.gov.turkiye.sekilapp.plainreaderandwriter.PlainReader;
 import tr.gov.turkiye.sekilapp.plainreaderandwriter.PlainWriter;
 import tr.gov.turkiye.sekilapp.sekil.*;
@@ -11,7 +12,7 @@ import tr.gov.turkiye.sekilapp.sekil.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static tr.gov.turkiye.sekilapp.newscanner.Newscanner.Option;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -20,8 +21,9 @@ public class Main {
 
         do {
 
-            Scanner input = new Scanner(System.in );
-            int x = Option();
+            Newscanner newscanner = new Newscanner();
+            newscanner.setx();
+            int x = newscanner.getx();
 
 
             if (x == 1) {
@@ -36,55 +38,55 @@ public class Main {
                 sekiller.add(sekil);
 
             } else if (x == 3) {
+                newscanner.setKenar();
+                newscanner.setSembol();
+                int kenar = newscanner.getKenar();
+                char sembol = newscanner.getSembol();
 
-                Logger.logMessage("Kenar uzunlugu gir\n");
-                int kenar = input.nextInt();
-                Logger.logMessage("sembol gir\n");
-                char sembol = input.next().charAt(0);
                 Sekil sekil = new Kare(kenar, sembol);
                 sekil.ciz();
                 alanVeCevreHesaplamaVeBastirma(sekil);
                 sekiller.add(sekil);
 
             } else if (x == 4) {
+                newscanner.setKenar();
+                newscanner.setSembol();
+                int kenar = newscanner.getKenar();
+                char sembol = newscanner.getSembol();
 
-                Logger.logMessage("Kenar uzunlugu gir\n");
-                int kenar = input.nextInt();
-                Logger.logMessage("sembol gir\n");
-                char sembol = input.next().charAt(0);
                 Sekil sekil = new Ucgen(kenar, sembol);
                 sekil.ciz();
                 alanVeCevreHesaplamaVeBastirma(sekil);
                 sekiller.add(sekil);
 
             } else if (x == 5) {
+                newscanner.setKenar();
+                newscanner.setSembol();
+                int kenar = newscanner.getKenar();
+                char sembol = newscanner.getSembol();
 
-                Logger.logMessage("Kenar uzunlugu gir\n");
-                int kenar = input.nextInt();
-                Logger.logMessage("sembol gir\n");
-                char sembol = input.next().charAt(0);
                 Sekil sekil = new Dikdortgen(kenar, sembol);
                 sekil.ciz();
                 alanVeCevreHesaplamaVeBastirma(sekil);
                 sekiller.add(sekil);
 
             } else if (x == 6) {
+                newscanner.setKenar();
+                newscanner.setSembol();
+                int kenar = newscanner.getKenar();
+                char sembol = newscanner.getSembol();
 
-                Logger.logMessage("Kenar uzunlugu gir\n");
-                int kenar = input.nextInt();
-                Logger.logMessage("sembol gir\n");
-                char sembol = input.next().charAt(0);
                 Sekil sekil = new Yildiz(kenar, sembol);
                 sekil.ciz();
                 alanVeCevreHesaplamaVeBastirma(sekil);
                 sekiller.add(sekil);
 
             } else if (x == 7) {
+                newscanner.setKenar();
+                newscanner.setSembol();
+                int kenar = newscanner.getKenar();
+                char sembol = newscanner.getSembol();
 
-                Logger.logMessage("Kenar uzunlugu gir\n");
-                int kenar = input.nextInt();
-                Logger.logMessage("sembol gir\n");
-                char sembol = input.next().charAt(0);
                 Sekil sekil = new Daire(kenar, sembol);
                 sekil.ciz();
                 alanVeCevreHesaplamaVeBastirma(sekil);

@@ -6,8 +6,21 @@ import java.util.Scanner;
 
 public class Newscanner {
 
-    public static int Option(){
+    protected int x;
+    protected int kenar;
+    protected char sembol;
 
+    public int getx() {
+        return this.x;
+    }
+    public int getKenar() {
+        return this.kenar;
+    }
+    public char getSembol() {
+        return this.sembol;
+    }
+
+    public void setx(){
         Logger.logMessage("Bu bir konsol uygulamasidir. Lutfen asagidaki komut numaralarindan birini giriniz.\n");
         Logger.logMessage("Program calistigini kontrol etmek icin : 1\n");
         Logger.logMessage ("Ekrana 3x3 kare cizdirmek icin : 2\n");
@@ -24,14 +37,21 @@ public class Newscanner {
         Logger.logMessage("Listeyi görmek için : 13\n");
         Logger.logMessage("Listeyi sıfırlamak için : 14\n");
 
-
-
-
         Scanner input = new Scanner(System.in );
-        int x = input.nextInt();
+        this.x = input.nextInt();
+    }
 
-        return x;
+    public void setKenar(){
+        Scanner input = new Scanner(System.in );
+        Logger.logMessage("Kenar uzunlugu gir\n");
+        this.kenar = input.nextInt();
+    }
 
+    public char setSembol(){
+        Scanner input = new Scanner(System.in );
+        Logger.logMessage("sembol gir\n");
+        this.sembol = input.next().charAt(0);
+        return 0;
     }
 
 }
