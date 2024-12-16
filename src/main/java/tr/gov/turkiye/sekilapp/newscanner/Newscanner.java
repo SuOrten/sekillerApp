@@ -1,7 +1,10 @@
 package tr.gov.turkiye.sekilapp.newscanner;
 
+import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import tr.gov.turkiye.sekilapp.log.Logger;
 
+import java.io.IOError;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Newscanner {
@@ -9,7 +12,6 @@ public class Newscanner {
     protected int x;
     protected int kenar;
     protected char sembol;
-    private static final String SEMBOLLER = "[1234567890!^+@#*$%]";
 
     public int getx() {
         return this.x;
@@ -40,10 +42,25 @@ public class Newscanner {
         Logger.logMessage("Listeyi görmek için : 13\n");
         Logger.logMessage("Listeyi sıfırlamak için : 14\n");
 
+        try {
+
+
+
+        String kararregex = "([1-9]|1[0-4])";
+
         Scanner input = new Scanner(System.in);
-        this.x = input.nextInt();
-        if (x < 0 || x > 15){
+        int temp= input.nextInt();
+
+        if (String.valueOf(temp).matches(kararregex)){
+            this.x =temp;
+
+        } else {
             throw new IllegalArgumentException(" Sadece 1 ve 14 arasındaki sayılar girilebilir.");
+        }
+
+        }catch (InputMismatchException e){
+            Logger.logMessage("Lütfen tamsayı giriniz.\n");
+            e.getStackTrace();
         }
     }
 
@@ -55,13 +72,17 @@ public class Newscanner {
 
     public void setSembol() {
         Scanner input = new Scanner(System.in);
-        Logger.logMessage("sembol gir\n");
+        String sembolregex = "[0-9a-zA-Z_$!^+]";
+        Logger.logMessage("sembol giriniz\n");
         char temp = input.next().charAt(0);
-        if (SEMBOLLER.indexOf(temp) != -1) {
+
+        if (String.valueOf(temp).matches(sembolregex)) {
             this.sembol = temp;
         } else {
-            throw new IllegalArgumentException("Yanlış sembol seçimi.[1234567890!^+@#*$%] den biri olmalı");
+            throw new IllegalArgumentException("Yanlış sembol seçimi.");
         }
+
+
 
     }
 }
