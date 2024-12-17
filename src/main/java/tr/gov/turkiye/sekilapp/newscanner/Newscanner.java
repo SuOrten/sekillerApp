@@ -66,15 +66,25 @@ public class Newscanner {
 
     public void setSembol() {
         Scanner input = new Scanner(System.in);
-        String sembolregex = "[0-9a-zA-Z_$!^+]";
+
         Logger.logMessage("sembol giriniz\n");
         char temp = input.next().charAt(0);
 
-        if (String.valueOf(temp).matches(sembolregex)) {
+        if (sembolKontrol(temp)==true) {
             this.sembol = temp;
         } else {
             Logger.logMessage("Yanlış sembol seçimi.\n");
             throw new IllegalArgumentException();
+        }
+
+    }
+
+    public boolean sembolKontrol(char sembol){
+        String sembolregex = "[0-9a-zA-Z_$!^+]";
+        if (String.valueOf(sembol).matches(sembolregex)) {
+            return true;
+        } else {
+            return false;
         }
 
     }
