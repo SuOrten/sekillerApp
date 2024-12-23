@@ -80,7 +80,7 @@ public class Newscanner {
     }
 
     public boolean sembolKontrol(char sembol){
-        String sembolregex = "[0-9a-zA-Z_$!^+]";
+        String sembolregex = "[0-9a-zA-Z_$!^+-]";
         if (String.valueOf(sembol).matches(sembolregex)) {
             return true;
         } else {
