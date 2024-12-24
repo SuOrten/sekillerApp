@@ -1,12 +1,14 @@
 package tr.gov.turkiye.sekilapp.newscanner;
 
 import com.fasterxml.jackson.databind.exc.MismatchedInputException;
+import tr.gov.turkiye.sekilapp.anatasyonlar.TestableClass;
+import tr.gov.turkiye.sekilapp.anatasyonlar.TestableMethod;
 import tr.gov.turkiye.sekilapp.log.Logger;
 
 import java.io.IOError;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
+@TestableClass
 public class Newscanner {
 
     protected int x;
@@ -78,7 +80,7 @@ public class Newscanner {
         }
 
     }
-
+    @TestableMethod
     public boolean sembolKontrol(char sembol){
         String sembolregex = "[0-9a-zA-Z_$!^+-]";
         if (String.valueOf(sembol).matches(sembolregex)) {

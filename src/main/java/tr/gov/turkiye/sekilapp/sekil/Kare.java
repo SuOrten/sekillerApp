@@ -3,7 +3,6 @@ package tr.gov.turkiye.sekilapp.sekil;
 import tr.gov.turkiye.sekilapp.log.Logger;
 
 
-
 public class Kare extends Sekil {
 
     public Kare() {
